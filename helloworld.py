@@ -8,7 +8,7 @@ form = """
 class MainPage(webapp2.RequestHandler):
     def get(self):
         #self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write(form)
+        self.response.out.write(form)
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
