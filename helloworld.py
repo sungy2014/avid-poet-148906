@@ -26,5 +26,5 @@ class MainPage(webapp2.RequestHandler):
 #         q = self.request.get("q")
 #         self.response.out.write(q)
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/testform', TestHandler)],
+                               ],
                               debug=True)
