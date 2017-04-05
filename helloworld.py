@@ -10,6 +10,9 @@ form = """
     <label> Year
     <input type="text" name="year">
     </label>
+    
+    <br>
+    <input type="submit">
 </form>
 """
 class MainPage(webapp2.RequestHandler):
