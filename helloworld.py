@@ -36,11 +36,11 @@ def valid_month(month):
         short_month=month[:3].lower()
         return month_abbvs.get(short_month)
 
-def valid_day(day):
-    if day and day.isdigit():
-        day=int(day)
-        if day > 0 and day < 31:
-            return day
+# def valid_day(day):
+#     if day and day.isdigit():
+#         day=int(day)
+#         if day > 0 and day < 31:
+#             return day
 
 def valid_year(year):
     if year and year.isdigit():
@@ -49,6 +49,12 @@ def valid_year(year):
             return year
 
 class MainPage(webapp2.RequestHandler):
+    
+    def valid_day(self, day):
+    if day and day.isdigit():
+        day=int(day)
+        if day > 0 and day < 31:
+            return self.day
 
     def get(self):
         #self.response.headers['Content-Type'] = 'text/plain'
@@ -56,7 +62,7 @@ class MainPage(webapp2.RequestHandler):
         
     def post(self):
         user_month = valid_month(self.request.get('month'))
-        user_day = valid_day(self.request.get('day'))
+        user_day = self.valid_day(self.request.get('day'))
         user_year = valid_year(self.request.get('year'))
         
         if not (user_month and user_day and user_year):
