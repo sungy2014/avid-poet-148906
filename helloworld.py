@@ -61,8 +61,9 @@ class MainPage(webapp2.RequestHandler):
         self.response.out.write(form)
         
     def post(self):
+        self.day = self.request.get('day')
         user_month = valid_month(self.request.get('month'))
-        user_day = self.valid_day(self.request.get('day'))
+        user_day = self.valid_day(self.day)
         user_year = valid_year(self.request.get('year'))
         
         if not (user_month and user_day and user_year):
