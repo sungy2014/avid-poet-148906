@@ -19,7 +19,7 @@ form = """
 
 
 class MainPage(webapp2.RequestHandler):
-    def valid_month(month):
+    def valid_month(self, month):
         months = ['January',
                   'February',
                   'March',
@@ -38,13 +38,13 @@ class MainPage(webapp2.RequestHandler):
             short_month = month[:3].lower()
             return month_abbvs.get(short_month)
 
-    def valid_day(day):
+    def valid_day(self, day):
         if day.isdigit():
             int_day = int(day)
             if int_day >0 and int_day <= 31:
                 return int_day
     
-    def valid_year(year):
+    def valid_year(self, year):
         if year.isdigit():
             int_year = int(year)
             if int_year >= 1900 and int_year <= 2020:
@@ -60,7 +60,7 @@ class MainPage(webapp2.RequestHandler):
         user_year = valid_year(self.request.get('year'))
         
         if not (user_month and user_day and user_year):
-            self.response.out.write(form)
+            self.response.out.write(user_month, user_day, user_year)
         else:
             self.response.out.write("Thanks! That's a totally valid day!")
         
