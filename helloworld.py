@@ -40,6 +40,13 @@ class MainPage(webapp2.RequestHandler):
         
     def post(self):
         user_month = valid_month(self.response.get('month'))
+        user_day = valid_day(self.response.get('day'))
+        user_year = valid_year(self.response.get('year'))
+        
+        if not (user_month and user_day and user_year):
+            self.response.out.write(form)
+        else:
+            self.response.out.write("Thanks! That's a totally valid day!")
         
         
     def valid_month(month):
