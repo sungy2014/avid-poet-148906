@@ -17,38 +17,38 @@ form = """
 </form>
 """
 
+months = ['January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December']
+
+def valid_month(month):
+    month_abbvs=dict((m[:3].lower(),m) for m in months) 
+    if month:
+        short_month=month[:3].lower()
+        return month_abbvs.get(short_month)
+
+def valid_day(day):
+    if day and day.isdigit():
+        day=int(day)
+        if day > 0 and day < 31:
+            return day
+
+def valid_year(year):
+    if year and year.isdigit():
+        year = int(year)
+        if year > 1900 and year < 2020:
+            return year
 
 class MainPage(webapp2.RequestHandler):
-    def valid_month(self, month):
-        months = ['January',
-                  'February',
-                  'March',
-                  'April',
-                  'May',
-                  'June',
-                  'July',
-                  'August',
-                  'September',
-                  'October',
-                  'November',
-                  'December']
-
-        month_abbvs = dict((m[:3].lower(), m) for m in months)
-        if month:
-            short_month = month[:3].lower()
-            return month_abbvs.get(short_month)
-
-    def valid_day(self, day):
-        if day.isdigit():
-            int_day = int(day)
-            if int_day >0 and int_day <= 31:
-                return int_day
-    
-    def valid_year(self, year):
-        if year.isdigit():
-            int_year = int(year)
-            if int_year >= 1900 and int_year <= 2020:
-                return int_year  
 
     def get(self):
         #self.response.headers['Content-Type'] = 'text/plain'
@@ -60,7 +60,7 @@ class MainPage(webapp2.RequestHandler):
         user_year = valid_year(self.request.get('year'))
         
         if not (user_month and user_day and user_year):
-            self.response.out.write(user_month)
+            self.response.out.write(form)
         else:
             self.response.out.write("Thanks! That's a totally valid day!")
         
