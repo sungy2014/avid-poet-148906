@@ -60,7 +60,7 @@ class MainPage(webapp2.RequestHandler):
         user_year = valid_year(self.request.get('year'))
         
         if not (user_month and user_day and user_year):
-            self.response.out.write(user_month, user_day, user_year)
+            self.response.out.write(user_month)
         else:
             self.response.out.write("Thanks! That's a totally valid day!")
         
