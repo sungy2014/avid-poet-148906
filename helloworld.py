@@ -1,6 +1,6 @@
 import webapp2
 form = """
-<form>
+<form method="post">
     <label> Month
     <input type="text" name="month">
     </label>
