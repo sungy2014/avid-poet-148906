@@ -51,10 +51,10 @@ def valid_year(year):
 class MainPage(webapp2.RequestHandler):
     
     def valid_day(self, day):
-    if day and day.isdigit():
-        day=int(day)
-        if day > 0 and day < 31:
-            return self.day
+        if day and day.isdigit():
+            day=int(day)
+            if day > 0 and day < 31:
+                return self.day
 
     def get(self):
         #self.response.headers['Content-Type'] = 'text/plain'
